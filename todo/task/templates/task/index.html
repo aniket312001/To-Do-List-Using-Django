@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        
+        .container{
+            background-color: lightblue;
+            display: flex;
+            border-radius: 5px;
+            flex-direction: column;
+            width: 70%;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 45px;
+        }
+        
+        
+        h1{
+            text-align: center;
+            text-decoration: underline;
+           
+        }
+
+        .mainbody{
+            border-radius: 8px;
+            padding: 5px;
+            background-color: rgb(233, 233, 167);
+           
+        }
+        .item{
+            border: 1px solid black;
+            padding-left: 5px;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        form{
+            
+            margin: 2px 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+        }
+        
+        .item a{
+            float: right;
+            padding-left: 2px;
+            margin:0px 3px
+        }
+
+        input[type='text'] {
+            color:blue;
+        }
+        input[type='submit']:hover {
+            background-color: pink;
+            color: black;
+            cursor: pointer;
+        }
+
+        a{
+            border: 1px solid black;
+            background-color: lightgreen;
+            border-radius: 5px;
+            text-decoration: none;
+            
+        }
+
+        a:first-child{
+            margin-right: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+    <h1>To-Do List</h1>
+        <div class="mainbody">
+
+            <form action="" method="POST"> 
+                {% csrf_token %}
+                <input type="text" name="data" id="" >
+                <input type="submit" value="submit">
+            </form>
+            {% for i in task %}
+            <div class="item">
+                {{i.title}}
+                <a href="{% url 'delete' i.id %}">Delete</a>
+                <a href="{% url 'update' i.id %}">Update</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
